@@ -8866,13 +8866,14 @@ margin-top: 30px;
     margin-top: 15px;
 }
 
+
 .sidebar .recent-properties-box .detail header {
     padding-bottom: 0;
 }
 
 /** Sub Banner start **/
 .sub-banner {
-    background: rgba(50, 205, 50, 0.2) url(../img/about.png) top left repeat;
+    background: url(../img/about.png) top left repeat;
     background-size: cover;
     height: 400px;
     background-position: center center;
@@ -8887,7 +8888,7 @@ margin-top: 30px;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgb(9 25 169 / 40%);
+   
 }
 
 .sub-banner .breadcrumb-area {
