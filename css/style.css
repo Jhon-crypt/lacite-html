@@ -1727,7 +1727,7 @@ input[type=checkbox]:checked + label:before {
 
 .show-search-area {
     z-index: 9999;
-. search-contents transition: all 0.4 s;
+    transition: all 0.4 s;
     display: block;
 }
 
@@ -5148,6 +5148,25 @@ mark {
     position: absolute;
     top: 0;
     right: 0;
+    background: url(../img/about-2.png) top left repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+/*../img/img-2.jpg*/
+
+.testimonial-custom {
+    padding: 120px 0 130px;
+    position: relative;
+}
+
+.testimonial-custom:before {
+    content: "";
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
     background: url(../img/img-2.jpg) top left repeat;
     background-position: center center;
     background-size: cover;
@@ -6673,7 +6692,7 @@ mark {
 
 /** main-footer-3 start **/
 .main-footer-3 {
-    background: url(../img/footer-bg.jpg);
+    background: url(/img/footer.jpg);
     z-index: 0;
     background-position: center center;
     background-repeat: no-repeat;
@@ -7300,7 +7319,7 @@ mark {
 
 /** Counters 2 start **/
 .counters-2{
-    background: url(../img/img-1.jpg);
+    background: url(../img/nature1.jpg);
     z-index: 0;
     background-position: center center;
     background-repeat: no-repeat;

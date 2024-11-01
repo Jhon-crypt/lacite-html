@@ -105,8 +105,59 @@
       <script src="js/html5shiv.min.js"></script>
       <script sr,c="js/respond.min.js"></script>
     <![endif]-->
+    <style>
+      .video-container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+
+      .video-container video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Makes the video cover the entire container */
+        z-index: -1; /* Places the video behind other content */
+      }
+
+      /* Container for the image with rounded borders */
+      .image-container {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 250px; /* Set desired width and height */
+        height: 250px;
+        overflow: hidden; /* Ensure the image doesn't overflow the border */
+        border-radius: 50%; /* Makes the border rounded */
+      }
+
+      /* Style the image to fit within the container */
+      .image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Ensures the image fills the container while maintaining aspect ratio */
+      }
+
+      /* Set all containers to full height */
+      .about-img-section,
+      .image-box,
+      .image-1 {
+        height: 100%;
+      }
+
+      /* Make the image fill the column's full height while maintaining its aspect ratio */
+      .about-img-section img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Ensures the image fills the area without stretching */
+        border-radius: 10px;
+      }
+    </style>
   </head>
-  <body>
+  <body style="background-color: white;">
     <!-- Google Tag Manager (noscript) -->
     <noscript
       ><iframe
@@ -131,7 +182,7 @@
             href="index.html"
             style="font-size: 25px"
           >
-            <b>LA CITE</b>
+            <b>LA CITÉ</b>
           </a>
           <button class="navbar-toggler" id="drawer" type="button">
             <span class="fa fa-bars"></span>
@@ -144,49 +195,73 @@
               <li class="nav-item dropdown">
                 <a
                   class="nav-link dropdown-toggle"
-                  href="about.html"
+                  href=""
                   id="navbarDropdownMenuLink"
                   data-toggle="dropdown"
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
-                  About
+                  Our vision
                 </a>
               </li>
               <li class="nav-item dropdown">
                 <a
                   class="nav-link dropdown-toggle"
-                  href="services.html"
+                  href=""
+                  id="navbarDropdownMenuLink"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  The properties
+                </a>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href=""
                   id="navbarDropdownMenuLink2"
                   data-toggle="dropdown"
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
-                  Services
+                  Amenities
                 </a>
               </li>
               <li class="nav-item dropdown">
                 <a
                   class="nav-link dropdown-toggle"
-                  href="faq.html"
+                  href=""
                   id="navbarDropdownMenuLink2"
                   data-toggle="dropdown"
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
-                  Faq
+                  Book & Build
                 </a>
               </li>
               <li class="nav-item dropdown">
                 <a
                   class="nav-link dropdown-toggle"
-                  href="contact.html"
+                  href=""
                   id="navbarDropdownMenuLink6"
                   data-toggle="dropdown"
                   aria-haspopup="true"
                   aria-expanded="false"
                 >
-                  Contact us
+                  Our inspirations
+                </a>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href=""
+                  id="navbarDropdownMenuLink6"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  Get to know us
                 </a>
               </li>
             </ul>
@@ -272,60 +347,34 @@
       >
         <div class="carousel-inner">
           <div class="carousel-item item-bg active">
-            <img class="d-block w-100 h-100" src="img/indexbg.png" alt="banner">
+            <div class="video-container">
+              <video
+                class="d-block w-100 h-100"
+                autoplay
+                loop
+                muted
+                playsinline
+              >
+                <source src="img/vid.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
             <div
               class="carousel-caption banner-slider-inner d-flex h-100 text-start"
             >
               <div class="carousel-content container align-self-center">
                 <div class="banner-info2">
                   <div class="text-l">
-                    <h3 class="text-uppercase">Discover Modern Plots</h3>
-                    <p>
+                    <h3 class="text-uppercase text-center">
+                      Discover Modern Plots
+                    </h3>
+                    <p class="text-center">
                       Lorem ipsum dolor sit amet, consectetur adipisicing elit,
                       sed do eiusmod
                     </p>
-                    <a href="/map.html" class="btn-6">Get Started</a>
-                    <a href="/map.html" class="btn-5">Explore Maps</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item item-bg">
-            <img class="d-block w-100 h-100" src="img/indexbg2.png" alt="banner">
-            <div
-              class="carousel-caption banner-slider-inner d-flex h-100 text-start"
-            >
-              <div class="carousel-content container align-self-center">
-                <div class="t-left banner-info2">
-                  <div class="text-l">
-                    <h3 class="text-uppercase">Find Your Dream Property</h3>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                      sed do eiusmod
-                    </p>
-                    <a href="/map.html" class="btn-6">Get Started</a>
-                    <a href="/map.html" class="btn-5">Explore Maps</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item item-bg">
-            <img class="d-block w-100 h-100" src="img/imdexbg3.png" alt="banner">
-            <div
-              class="carousel-caption banner-slider-inner d-flex h-100 text-start"
-            >
-              <div class="carousel-content container align-self-center">
-                <div class="t-left banner-info2">
-                  <div class="text-l">
-                    <h3 class="text-uppercase">Find Your Amazing Home</h3>
-                    <p>
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                      sed do eiusmod
-                    </p>
-                    <a href="/map.html" class="btn-6">Get Started</a>
-                    <a href="/map.html" class="btn-5">Explore Maps</a>
+                    <div class="d-flex justify-content-center">
+                      <a href="/map.html" class="btn-5">Explore Maps</a>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -599,11 +648,14 @@
     <!-- Search section end -->
 
     <!-- Featured Properties start -->
-    <div class="featured-properties content-area-16 slide-box-2">
+
+    <!-- <div class="featured-properties content-area-16 slide-box-2">
       <div class="container">
-        <!-- Main title -->
+        
         <div class="main-title-4 d-flex">
-          <h2 data-title="La Cite Properties">Featured Lands And Properties</h2>
+          <h2 data-title="Belong. Build. Live">
+            Own your estate in Abidjan, Invest in your lifestyle
+          </h2>
         </div>
       </div>
       <div class="slide-container">
@@ -756,25 +808,47 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     <!-- Featured Properties end -->
+    <div class="testimonial-3">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="testimonial-inner">
+              <!-- Main title -->
+              <div class="main-title-4 d-flex">
+                <h2 data-title="LA CITÉ">Belong. Build. Live.</h2>
+              </div>
+
+              <p>
+                Own your estate in Abidjan, Invest in your lifestyle. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus iste quasi eligendi obcaecati est expedita ea harum reprehenderit soluta minima? Quas placeat tempora voluptatibus, ratione explicabo facere minima quos fuga!
+              </p>
+              
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Services start -->
     <div class="services content-area-14 bg-grea-3">
       <div class="container">
         <!-- Main title -->
         <div class="main-title-4 d-flex">
-          <h2 data-title="Our Expertise">Why Choose Us</h2>
+          <h2 data-title="Our Cités/Properties">
+            Discover our cités/properties
+          </h2>
         </div>
         <div class="row">
           <div class="col-lg-4 col-md-12">
             <div class="service-info">
-              <div class="icon">
-                <i class="flaticon-user"></i>
+              <div class="image-container">
+                <img src="/img/plot1.png" />
               </div>
               <div class="text">
                 <h3>
-                  <a href="services.html">Personalized Service Possible</a>
+                  <a href="services.html">CITÉ ONE</a>
                 </h3>
                 <p>
                   Lorem Ipsum is simply dummy text of the printing and
@@ -786,11 +860,11 @@
           </div>
           <div class="col-lg-4 col-md-12">
             <div class="service-info">
-              <div class="icon">
-                <i class="flaticon-empire-state-building"></i>
+              <div class="image-container">
+                <img src="/img/plot1.png" />
               </div>
               <div class="text">
-                <h3><a href="services.html">Luxury Real Estate Experts</a></h3>
+                <h3><a href="services.html">CITÉ TWO</a></h3>
                 <p>
                   Lorem Ipsum is simply dummy text of the printing and
                   typesetting industry. Lorem Ipsum has been the industry's
@@ -801,14 +875,12 @@
           </div>
           <div class="col-lg-4 col-md-12">
             <div class="service-info">
-              <div class="icon">
-                <i class="flaticon-discount"></i>
+              <div class="image-container">
+                <img src="/img/plot5.jpg" />
               </div>
               <div class="text">
                 <h3>
-                  <a href="services.html"
-                    >Modern Building And Plot For $ Sell</a
-                  >
+                  <a href="services.html">CITÉ THREE</a>
                 </h3>
                 <p>
                   Lorem Ipsum is simply dummy text of the printing and
@@ -824,9 +896,9 @@
     <!-- Services end -->
 
     <!-- Popular places section strat -->
-    <div class="popular-places-section content-area-15">
+    <!-- <div class="popular-places-section content-area-15">
       <div class="container">
-        <!-- Main title -->
+       
         <div class="main-title-4 d-flex">
           <h2 data-title="Find Your City">Most Popular Places</h2>
         </div>
@@ -949,50 +1021,49 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     <!-- Popular places section end -->
 
     <!-- Counters 2 strat -->
     <div class="counters-2">
       <div class="container">
+          <br /><br /><br />
+          <div class=""><h2 class="text-center text-white">La CITÉ IN NUMBERS</h2></div>
+          
+        <div class="">
         <div class="row g-0">
-          <div class="col-lg-3 col-md-6 col-sm-6 border-r border-l">
+          <div class="col border-r border-l">
             <div class="counter-box-2">
-              <i class="flaticon-sale"></i>
-              <h1 class="counter">967</h1>
-              <p>Listings For Sale</p>
+              <i class="flaticon-empire-state-building"></i>
+              <h1 class="counter" style="font-size: 60px;">30%</h1>
+              <p>Of Villages</p>
             </div>
           </div>
-          <div class="col-lg-3 col-md-6 col-sm-6 border-r">
+          <div class="col border-r">
             <div class="counter-box-2">
-              <i class="flaticon-rent"></i>
-              <h1 class="counter">1276</h1>
-              <p>Listings For Rent</p>
+              <i class="flaticon-apartment"></i>
+              <h1 class="counter" style="font-size: 60px;">60%</h1>
+              <p>Of Units</p>
             </div>
           </div>
-          <div class="col-lg-3 col-md-6 col-sm-6 border-r">
+          <div class="col border-r">
             <div class="counter-box-2">
-              <i class="flaticon-user"></i>
-              <h1 class="counter">396</h1>
-              <p>Agents</p>
+              <i class="flaticon-bill"></i>
+              <h1 class="counter" style="font-size: 60px;">90%</h1>
+              <p>From Prices</p>
             </div>
           </div>
-          <div class="col-lg-3 col-md-6 col-sm-6 border-r">
-            <div class="counter-box-2">
-              <i class="flaticon-broker"></i>
-              <h1 class="counter">177</h1>
-              <p>Brokers</p>
-            </div>
-          </div>
+         
         </div>
+      </div>
       </div>
     </div>
     <!-- Counters 2 end -->
 
     <!-- Our team start -->
-    <div class="our-team comon-slick content-area-14">
+    <!-- <div class="our-team comon-slick content-area-14">
       <div class="container">
-        <!-- Main title -->
+       
         <div class="main-title-4 d-flex">
           <h2 data-title="Our Professionals">Meet Our Team</h2>
         </div>
@@ -1191,16 +1262,16 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     <!-- Our team end -->
 
     <!-- testimonial 3 start  -->
-    <div class="testimonial-3 bg-grea-3">
+    <!-- <div class="testimonial-custom bg-grea-3">
       <div class="container">
         <div class="row">
           <div class="col-lg-6">
             <div class="testimonial-inner">
-              <!-- Main title -->
+             
               <div class="main-title-4 d-flex">
                 <h2 data-title="Testimonials">Customer Reviews</h2>
               </div>
@@ -1326,7 +1397,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
     <!-- testimonial 3 end -->
 
     <!-- Blog start -->
@@ -1334,7 +1405,7 @@
       <div class="container">
         <!-- Main title -->
         <div class="main-title-4 d-flex">
-          <h2 data-title="Our Blog">Latest News</h2>
+          <h2 data-title="From our customers">Testimonials</h2>
         </div>
         <div class="row">
           <div class="col-lg-12">
@@ -1453,7 +1524,13 @@
           <div class="row">
             <div class="col-xl-4 col-lg-3 col-md-6 col-sm-6">
               <div class="footer-item clearfix">
-                <img src="img/logos/logo.png" alt="logo" class="f-logo" />
+                <a
+                  class="navbar-brand logos"
+                  href="index.html"
+                  style="font-size: 25px"
+                >
+                  <b>LA CITÉ</b>
+                </a>
                 <div class="s-border"></div>
                 <div class="m-border"></div>
                 <div class="text">
