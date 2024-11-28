@@ -5475,7 +5475,7 @@ mark {
 
 /** Service info 2 start **/
 .services-2 {
-    background: url(../img/img-2.jpg);
+    background: url(../img/nature2.jpg);
     z-index: 0;
     background-position: center center;
     background-repeat: no-repeat;
@@ -5484,6 +5484,27 @@ mark {
 }
 
 .services-2:before {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #201297;
+    content: "";
+    z-index: -1;
+    opacity: 0.3;
+}
+
+.services-2x {
+    background: url(../img/nature3.jpg);
+    z-index: 0;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.services-2x:before {
     position: absolute;
     left: 0;
     top: 0;
@@ -7518,7 +7539,7 @@ mark {
 }
 
 .contact-section .bg-login-ing{
-    background: url(../img/img-1.jpg) top left repeat;
+    background: url(../img/nature2.jpg) top left repeat;
     background-size: cover;
     top: 0;
     bottom: 0;
