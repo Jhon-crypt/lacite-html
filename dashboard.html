@@ -4,6 +4,11 @@
 <head>
     <!-- Google Tag Manager -->
     <script>
+        // Check authentication status
+        if (!localStorage.getItem('signInStatus')) {
+            window.location.href = 'signin.html';
+        }
+
         (function (w, d, s, l, i) {
             w[l] = w[l] || [];
             w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
@@ -281,6 +286,7 @@
                         <h4>Account</h4>
                         <ul>
                             <li><a href="profile.html"><i class="flaticon-male"></i>My Profile</a></li>
+                            <li><a href="createprofile.html"><i class="flaticon-plus"></i>Create Profile</a></li>
                             <li><a href="index.html"><i class="flaticon-logout"></i>Logout</a></li>
                         </ul>
                     </div>
@@ -289,7 +295,7 @@
                     <div class="dashboard-header clearfix">
                         <div class="row">
                             <div class="col-sm-12 col-md-5">
-                                <h4>Hello , Temi</h4>
+                                <h4>Hello, <script>document.write(JSON.parse(localStorage.getItem('userData')).user.fullname)</script></h4>
                             </div>
                             
                         </div>
@@ -302,27 +308,51 @@
                         <div class="col-lg-3 col-md-3 col-sm-6">
                             <div class="ui-item bg-success">
                                 <div class="left">
-                                    <h4>242</h4>
+                                    <h4 id="propertyCount">0</h4>
                                     <p>Active Properties</p>
                                 </div>
+                                <script>
+                                    fetch('http://localhost:3000/api/properties/counts')
+                                        .then(response => response.json())
+                                        .then(data => {
+                                            document.getElementById('propertyCount').textContent = data.count;
+                                        })
+                                        .catch(error => console.error('Error:', error));
+                                </script>
                                 
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-6">
                             <div class="ui-item bg-warning">
                                 <div class="left">
-                                    <h4>1242</h4>
+                                    <h4 id="plotCount">0</h4>
                                     <p>Active Plots</p>
                                 </div>
+                                <script>
+                                    fetch('http://localhost:3000/api/plots/counts')
+                                        .then(response => response.json())
+                                        .then(data => {
+                                            document.getElementById('plotCount').textContent = data.count;
+                                        })
+                                        .catch(error => console.error('Error:', error));
+                                </script>
                                 
                             </div>
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-6">
                             <div class="ui-item bg-danger">
                                 <div class="left">
-                                    <h4>$786.00</h4>
-                                    <p>Earnings</p>
+                                    <h4 id="userCount">0</h4>
+                                    <p>User(s)</p>
                                 </div>
+                                <script>
+                                    fetch('http://localhost:3000/api/users/count')
+                                        .then(response => response.json())
+                                        .then(data => {
+                                            document.getElementById('userCount').textContent = data.count;
+                                        })
+                                        .catch(error => console.error('Error:', error));
+                                </script>
                                 
                             </div>
                         </div>
@@ -344,81 +374,40 @@
                         </div>
                         <br />
                         <table class="manage-table">
-                            <tbody>
-                            <tr class="responsive-table">
-                                <td class="listing-photoo">
-                                    <img src="img/properties/properties-1.jpg" alt="listing-photo" class="img-fluid">
-                                </td>
-                                <td class="title-container">
-                                    <h2><a href="#">Travel To England</a></h2>
-                                    <h5><i class="flaticon-pin"></i> 123 Kathal St. Tampa City, </h5>
-                                    <h6 class="table-property-price">$900 / monthly</h6>
-                                </td>
-                                <td class="expire-date">4.01.2021</td>
-                                <td class="action">
-                                    <a href="#"><i class="fa fa-pencil"></i> Edit</a>
-                                    <a href="#"><i class="fa  fa-eye-slash"></i> Hide</a>
-                                    <a href="#" class="delete"><i class="fa fa-remove"></i> Delete</a>
-                                </td>
-                            </tr>
-                            <tr class="responsive-table">
-                                <td class="listing-photoo">
-                                    <img src="img/properties/properties-2.jpg" alt="listing-photo" class="img-fluid">
-                                </td>
-                                <td class="title-container">
-                                    <h2><a href="#">Amazing Hotel</a></h2>
-                                    <h5><i class="flaticon-pin"></i> 123 Kathal St. Tampa City, </h5>
-                                    <h6 class="table-property-price">$900 / monthly</h6>
-                                </td>
-                                <td class="expire-date">4.01.2021</td>
-                                <td class="action">
-                                    <a href="#"><i class="fa fa-pencil"></i> Edit</a>
-                                    <a href="#"><i class="fa  fa-eye-slash"></i> Hide</a>
-                                    <a href="#" class="delete"><i class="fa fa-remove"></i> Delete</a>
-                                </td>
-                            </tr>
-                            <tr class="responsive-table">
-                                <td class="listing-photoo">
-                                    <img src="img/properties/properties-3.jpg" alt="listing-photo" class="img-fluid">
-                                </td>
-                                <td class="title-container">
-                                    <h2><a href="#">Royal Botanic Gardens Sydney</a></h2>
-                                    <h5><i class="flaticon-pin"></i> 123 Kathal St. Tampa City, </h5>
-                                    <h6 class="table-property-price">$900 / monthly</h6>
-                                </td>
-                                <td class="expire-date">4.01.2021</td>
-                                <td class="action ">
-                                    <a href="#"><i class="fa fa-pencil"></i> Edit</a>
-                                    <a href="#"><i class="fa  fa-eye-slash"></i> Hide</a>
-                                    <a href="#" class="delete"><i class="fa fa-remove"></i> Delete</a>
-                                </td>
-                            </tr>
-                            <tr class="responsive-table">
-                                <td class="listing-photoo">
-                                    <img src="img/properties/properties-1.jpg" alt="listing-photo" class="img-fluid">
-                                </td>
-                                <td class="title-container">
-                                    <h2><a href="#">Radisson hotel</a></h2>
-                                    <h5><i class="flaticon-pin"></i> 123 Kathal St. Tampa City, </h5>
-                                    <h6 class="table-property-price">$900 / monthly</h6>
-                                </td>
-                                <td class="expire-date">4.01.2021</td>
-                                <td class="action">
-                                    <a href="#"><i class="fa fa-pencil"></i> Edit</a>
-                                    <a href="#"><i class="fa  fa-eye-slash"></i> Hide</a>
-                                    <a href="#" class="delete"><i class="fa fa-remove"></i> Delete</a>
-                                </td>
-                            </tr>
+                            <tbody id="propertiesTableBody">
                             </tbody>
                         </table>
+                        <script>
+                            fetch('http://localhost:3000/api/properties/all/')
+                                .then(response => response.json())
+                                .then(properties => {
+                                    const tbody = document.getElementById('propertiesTableBody');
+                                    properties.forEach(property => {
+                                        const tr = document.createElement('tr');
+                                        tr.className = 'responsive-table';
+                                        tr.innerHTML = `
+                                            <td class="listing-photoo">
+                                                <img src="http://localhost:3000${property.path}" alt="listing-photo" class="img-fluid">
+                                            </td>
+                                            <td class="title-container">
+                                                <h2><a href="#">${property.name}</a></h2>
+                                                <h5><i class="flaticon-pin"></i> ${property.area}</h5>
+                                                <h6 class="table-property-price">$${property.price}</h6>
+                                            </td>
+                                            <td class="expire-date">${property.date_created}</td>
+                                            <td class="action">
+                                                <a href="#" class="delete"><i class="fa fa-remove"></i> Delete</a>
+                                            </td>
+                                        `;
+                                        tbody.appendChild(tr);
+                                    });
+                                })
+                                .catch(error => console.error('Error:', error));
+                        </script>
                     </div>
                     <!-- End of properties list -->
 
-                    
-
                 </div>
-
-                
 
             </div>
         </div>

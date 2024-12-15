@@ -92,12 +92,18 @@
                     <div class="details">
                         
                         <h3>Sign Into Your Account</h3>
-                        <form action="#" method="GET">
+                        <div class="alert alert-success" role="alert" style="display: none;" id="successAlert">
+                            Login successful! Redirecting...
+                        </div>
+                        <div class="alert alert-danger" role="alert" style="display: none;" id="errorAlert">
+                            Invalid credentials. Please try again.
+                        </div>
+                        <form id="loginForm">
                             <div class="form-group form-box">
-                                <input type="email" name="email" class="form-control" placeholder="Email Address" aria-label="Email Address">
+                                <input type="email" name="email" class="form-control" placeholder="Email Address" aria-label="Email Address" required>
                             </div>
                             <div class="form-group form-box">
-                                <input type="password" name="password" class="form-control" autocomplete="off" placeholder="Password" aria-label="Password">
+                                <input type="password" name="password" class="form-control" autocomplete="off" placeholder="Password" aria-label="Password" required>
                             </div>
                             <div class="form-group form-box checkbox clearfix">
                                 <div class="form-check checkbox-theme">
@@ -109,8 +115,9 @@
                                 <a href="forgot-password.html">Forgot Password</a>
                             </div>
                             <div class="form-group">
-                                <a href="dashboard.html" type="submit" class="btn-md btn-theme w-100">Login</a>
+                                <button type="submit" class="btn-md btn-theme w-100">Login</button>
                             </div>
+                            <p>Don't have an account? <a href="createprofile.html">Register here</a></p>
                         </form>
                     </div>
                 </div>
@@ -156,6 +163,65 @@
 <script  src="js/ie10-viewport-bug-workaround.js"></script>
 <!-- Custom javascript -->
 <script  src="js/ie10-viewport-bug-workaround.js"></script>
+
+<script>
+document.getElementById('loginForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const email = document.querySelector('input[name="email"]').value;
+    const password = document.querySelector('input[name="password"]').value;
+
+    try {
+        const response = await fetch('http://localhost:3000/api/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: email,
+                password: password
+            })
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            
+            // Save the API response data to localStorage
+            localStorage.setItem('userData', JSON.stringify(data));
+            
+            // Create sign in token and status
+            localStorage.setItem('signInToken', Math.random().toString(36).substring(7));
+            localStorage.setItem('signInStatus', 'authenticated');
+
+            document.getElementById('successAlert').style.display = 'block';
+            document.getElementById('errorAlert').style.display = 'none';
+            
+            // Redirect to dashboard after successful login
+            setTimeout(() => {
+                window.location.href = 'dashboard.html';
+            }, 2000);
+        } else {
+            document.getElementById('errorAlert').style.display = 'block';
+            document.getElementById('successAlert').style.display = 'none';
+            
+            // Clear localStorage on failed login
+            localStorage.removeItem('userData');
+            localStorage.removeItem('signInToken');
+            localStorage.setItem('signInStatus', 'unauthenticated');
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        document.getElementById('errorAlert').style.display = 'block';
+        document.getElementById('successAlert').style.display = 'none';
+        
+        // Clear localStorage on error
+        localStorage.removeItem('userData');
+        localStorage.removeItem('signInToken');
+        localStorage.setItem('signInStatus', 'unauthenticated');
+    }
+});
+</script>
+
 </body>
 
 <!-- Mirrored from storage.googleapis.com/theme-vessel-items/checking-sites/neer-html/HTML/main/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 23 Oct 2024 16:43:01 GMT -->

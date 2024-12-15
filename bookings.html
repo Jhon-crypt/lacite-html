@@ -282,115 +282,22 @@
                         <h4>Account</h4>
                         <ul>
                             <li><a href="profile.html"><i class="flaticon-male"></i>My Profile</a></li>
+                            <li><a href="createprofile.html"><i class="flaticon-plus"></i>Create Profile</a></li>
                             <li><a href="index.html"><i class="flaticon-logout"></i>Logout</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="dashboard-content">
-                    
+
                     <div class="submit-address dashboard-list">
                         <form method="GET">
                             <h4>Bookings List</h4>
-                            <div class="row pad-20">
-                                <div class="col-lg-12">
-                                    <div class="comment d-flex">
-                                        <div class="comment-author">
-                                            <a href="#">
-                                                <img src="img/avatar/avatar-1.jpg" alt="comments-user">
-                                            </a>
-                                        </div>
-                                        <div class="comment-content">
-                                            <div class="comment-meta">
-                                                <h5>Maikel Alisa</h5>
-                                                <div class="comment-meta">
-                                                    8:42 PM 1/28/2022<a href="#">Reply</a>
-                                                </div>
-                                            </div>
-                                            <ul>
-                                                <li>Item :<span> Real Luxury Villa</span></li>
-                                                <li>Start date : <span> 18 November 2018</span></li>
-                                                <li>End date : <span> 18 November 2018</span></li>
-                                                <li>Booking details :<span> 4 Peoples</span></li>
-                                                <li>Mail : <span><a href="mailto:info@themevessel.com">
-                                                            info@themevessel.com</a> </span></li>
-                                                <li>Phone : <span> <a href="tel:+79617036705">+79617036705</a></span>
-                                                </li>
-                                            </ul>
-                                            <div class="buttons mb-20">
-                                                <a href="#" class="btn-1 btn-gray"><i
-                                                        class="fa fa-fw fa-check-circle-o"></i> Approve</a>
-                                                <a href="#" class="btn-1 btn-gray"><i
-                                                        class="fa fa-fw fa-times-circle-o"></i> Cancel</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="comment d-flex">
-                                        <div class="comment-author">
-                                            <a href="#">
-                                                <img src="img/avatar/avatar-2.jpg" alt="comments-user">
-                                            </a>
-                                        </div>
-                                        <div class="comment-content">
-                                            <div class="comment-meta">
-                                                <h5>Teseira</h5>
-                                                <div class="comment-meta">
-                                                    8:42 PM 1/28/2022<a href="#">Reply</a>
-                                                </div>
-                                            </div>
-                                            <ul>
-                                                <li>Item :<span> Real Luxury Villa</span></li>
-                                                <li>Start date : <span> 18 November 2018</span></li>
-                                                <li>End date : <span> 18 November 2018</span></li>
-                                                <li>Booking details :<span> 4 Peoples</span></li>
-                                                <li>Mail : <span><a href="mailto:info@themevessel.com">
-                                                            info@themevessel.com</a> </span></li>
-                                                <li>Phone : <span> <a href="tel:+79617036705">+79617036705</a></span>
-                                                </li>
-                                            </ul>
-                                            <div class="buttons mb-20">
-                                                <a href="#" class="btn-1 btn-gray"><i
-                                                        class="fa fa-fw fa-check-circle-o"></i> Approve</a>
-                                                <a href="#" class="btn-1 btn-gray"><i
-                                                        class="fa fa-fw fa-times-circle-o"></i> Cancel</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="comment comment-b">
-                                        <div class="comment-author">
-                                            <a href="#">
-                                                <img src="img/avatar/avatar-4.jpg" alt="comments-user">
-                                            </a>
-                                        </div>
-                                        <div class="comment-content">
-                                            <div class="comment-meta">
-                                                <h5>Emma Connor</h5>
-                                                <div class="comment-meta">
-                                                    8:42 PM 1/28/2022<a href="#">Reply</a>
-                                                </div>
-                                            </div>
-                                            <ul>
-                                                <li>Item :<span> Real Luxury Villa</span></li>
-                                                <li>Start date : <span> 18 November 2018</span></li>
-                                                <li>End date : <span> 18 November 2018</span></li>
-                                                <li>Booking details :<span> 4 Peoples</span></li>
-                                                <li>Mail : <span><a href="mailto:info@themevessel.com">
-                                                            info@themevessel.com</a> </span></li>
-                                                <li>Phone : <span> <a href="tel:+79617036705">+79617036705</a></span>
-                                                </li>
-                                            </ul>
-                                            <div class="buttons">
-                                                <a href="#" class="btn-1 btn-gray"><i
-                                                        class="fa fa-fw fa-check-circle-o"></i> Approve</a>
-                                                <a href="#" class="btn-1 btn-gray"><i
-                                                        class="fa fa-fw fa-times-circle-o"></i> Cancel</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="row pad-20" id="bookingsList">
+                                <!-- Bookings will be populated here -->
                             </div>
                         </form>
                     </div>
-                   
+
                 </div>
             </div>
         </div>
@@ -419,6 +326,44 @@
     <script src="js/boxes-core.js"></script>
     <script src="js/maps.js"></script>
     <script src="js/app.js"></script>
+
+    <script>
+        // Fetch bookings when page loads
+        fetch('http://localhost:3000/api/bookings')
+            .then(response => response.json())
+            .then(bookings => {
+                const bookingsList = document.getElementById('bookingsList');
+                bookings.forEach(booking => {
+                    const bookingHtml = `
+                        <div class="col border p-4">
+                            <div class="">
+                                <div class="comment-content p-0">
+                                    <div class="comment-meta">
+                                        <h5>${booking.fullname}</h5>
+                                        <div class="comment-meta">
+                                            ${booking.date_created}
+                                        </div>
+                                    </div>
+                                    <ul>
+                                        <li>Item :<span> ${booking.plot_property}</span></li>
+                                        <li>Mail : <span><a href="mailto:${booking.email}">${booking.email}</a></span></li>
+                                        <li>Phone : <span><a href="tel:${booking.phone}">${booking.phone}</a></span></li>
+                                        <li>Country : <span><a>${booking.country_of_residence}</a></span></li>
+                                        <li>Status : <span><a>user-approved</a></span></li>
+                                    </ul>
+                                    <div class="buttons mb-20">
+                                        <a href="#" class="btn-1 btn-gray"><i class="fa fa-fw fa-check-circle-o"></i> Approve</a>
+                                        <a href="#" class="btn-1 btn-gray"><i class="fa fa-fw fa-times-circle-o"></i> Cancel</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    bookingsList.innerHTML += bookingHtml;
+                });
+            })
+            .catch(error => console.error('Error:', error));
+    </script>
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="js/ie10-viewport-bug-workaround.js"></script>

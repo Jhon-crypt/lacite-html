@@ -227,89 +227,49 @@
                         <h4>Account</h4>
                         <ul>
                             <li><a href="profile.html"><i class="flaticon-male"></i>My Profile</a></li>
+                            <li><a href="createprofile.html"><i class="flaticon-plus"></i>Create Profile</a></li>
                             <li><a href="index.html"><i class="flaticon-logout"></i>Logout</a></li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="dashboard-content">
-                   
+
                     <div class="dashboard-list">
                         <h3>My Plots</h3>
                         <table class="manage-table">
-                            <tbody>
-                                <tr class="responsive-table">
-                                    <td class="listing-photoo">
-                                        <img src="img/properties/properties-1.jpg" alt="listing-photo"
-                                            class="img-fluid">
-                                    </td>
-                                    <td class="title-container">
-                                        <h2><a href="#">Travel To England</a></h2>
-                                        <h5><i class="flaticon-pin"></i> 123 Kathal St. Tampa City, </h5>
-                                        <h6 class="table-property-price">$900 / monthly</h6>
-                                    </td>
-                                    <td class="expire-date">4.01.2021</td>
-                                    <td class="action">
-                                        <a href="#"><i class="fa fa-pencil"></i> Edit</a>
-                                        <a href="#"><i class="fa  fa-eye-slash"></i> Hide</a>
-                                        <a href="#" class="delete"><i class="fa fa-remove"></i> Delete</a>
-                                    </td>
-                                </tr>
-                                <tr class="responsive-table">
-                                    <td class="listing-photoo">
-                                        <img src="img/properties/properties-2.jpg" alt="listing-photo"
-                                            class="img-fluid">
-                                    </td>
-                                    <td class="title-container">
-                                        <h2><a href="#">Amazing Hotel</a></h2>
-                                        <h5><i class="flaticon-pin"></i> 123 Kathal St. Tampa City, </h5>
-                                        <h6 class="table-property-price">$900 / monthly</h6>
-                                    </td>
-                                    <td class="expire-date">4.01.2021</td>
-                                    <td class="action">
-                                        <a href="#"><i class="fa fa-pencil"></i> Edit</a>
-                                        <a href="#"><i class="fa  fa-eye-slash"></i> Hide</a>
-                                        <a href="#" class="delete"><i class="fa fa-remove"></i> Delete</a>
-                                    </td>
-                                </tr>
-                                <tr class="responsive-table">
-                                    <td class="listing-photoo">
-                                        <img src="img/properties/properties-3.jpg" alt="listing-photo"
-                                            class="img-fluid">
-                                    </td>
-                                    <td class="title-container">
-                                        <h2><a href="#">Royal Botanic Gardens Sydney</a></h2>
-                                        <h5><i class="flaticon-pin"></i> 123 Kathal St. Tampa City, </h5>
-                                        <h6 class="table-property-price">$900 / monthly</h6>
-                                    </td>
-                                    <td class="expire-date">4.01.2021</td>
-                                    <td class="action ">
-                                        <a href="#"><i class="fa fa-pencil"></i> Edit</a>
-                                        <a href="#"><i class="fa  fa-eye-slash"></i> Hide</a>
-                                        <a href="#" class="delete"><i class="fa fa-remove"></i> Delete</a>
-                                    </td>
-                                </tr>
-                                <tr class="responsive-table">
-                                    <td class="listing-photoo">
-                                        <img src="img/properties/properties-1.jpg" alt="listing-photo"
-                                            class="img-fluid">
-                                    </td>
-                                    <td class="title-container">
-                                        <h2><a href="#">Radisson hotel</a></h2>
-                                        <h5><i class="flaticon-pin"></i> 123 Kathal St. Tampa City, </h5>
-                                        <h6 class="table-property-price">$900 / monthly</h6>
-                                    </td>
-                                    <td class="expire-date">4.01.2021</td>
-                                    <td class="action">
-                                        <a href="#"><i class="fa fa-pencil"></i> Edit</a>
-                                        <a href="#"><i class="fa  fa-eye-slash"></i> Hide</a>
-                                        <a href="#" class="delete"><i class="fa fa-remove"></i> Delete</a>
-                                    </td>
-                                </tr>
+                            <tbody id="propertiesTableBody">
                             </tbody>
                         </table>
+                        <script>
+                            fetch('http://localhost:3000/api/plots/all')
+                                .then(response => response.json())
+                                .then(properties => {
+                                    const tbody = document.getElementById('propertiesTableBody');
+                                    properties.forEach(property => {
+                                        const tr = document.createElement('tr');
+                                        tr.className = 'responsive-table';
+                                        tr.innerHTML = `
+                                            <td class="listing-photoo">
+                                                <img src="http://localhost:3000${property.path}" alt="listing-photo" class="img-fluid">
+                                            </td>
+                                            <td class="title-container">
+                                                <h2><a href="#">${property.name}</a></h2>
+                                                <h5><i class="flaticon-pin"></i> ${property.area}</h5>
+                                                <h6 class="table-property-price">${property.price}</h6>
+                                            </td>
+                                            
+                                            <td class="action">
+                                                <a href="#" class="delete"><i class="fa fa-remove"></i> Delete</a>
+                                            </td>
+                                        `;
+                                        tbody.appendChild(tr);
+                                    });
+                                })
+                                .catch(error => console.error('Error:', error));
+                        </script>
                     </div>
-                    
+
                 </div>
 
             </div>
