@@ -81,11 +81,38 @@
                     .then(plot => {
                         // Update page content with plot details
                         document.querySelector('.heading-properties-3 h1').textContent = plot.name;
-                        document.querySelector('.price').textContent = plot.price;
+                        document.querySelector('.pricee').textContent = plot.price;
                         document.querySelector('.location').textContent = plot.area;
                         document.querySelector('.sqft').textContent = plot.sqft;
                         document.querySelector('.description').textContent = plot.description;
                         document.querySelector('.plot-image').src = `http://localhost:3000${plot.path}`;
+
+                        // Store price in a data attribute for booking form
+                        document.querySelector('.price').setAttribute('data-price', plot.price);
+
+                        // Store plot name in a data attribute for booking form
+                        document.querySelector('.plot_property').setAttribute('data-plot_property', plot.name);
+
+
+                        // Store plot ID in a data attribute for booking form
+                        document.querySelector('.plot_property_id').setAttribute('data-plot_property_id', plotId);
+
+                        // Update amenities
+                        if (plot.amenities && plot.amenities.length > 0) {
+                            const amenitiesContainer = document.querySelector('.amenities');
+                            let html = '';
+                            plot.amenities.forEach(amenity => {
+                                html += `
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                    <ul class="amenities">
+                                        <li>
+                                            <i class="fa fa-check"></i>${amenity}
+                                        </li>
+                                    </ul>
+                                </div>`;
+                            });
+                            amenitiesContainer.innerHTML = html;
+                        }
 
                         // Fetch similar properties using plot IDs
                         if (plot.plots && plot.plots.length > 0) {
@@ -114,7 +141,7 @@
                                                     <a href="properties-details.html?id=${plot.id}">${plot.name}</a>
                                                 </h5>
                                                 <div class="listing-post-meta">
-                                                    $${plot.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} | <a href="#"><i class="fa fa-calendar"></i> ${new Date(plot.date_created).toLocaleDateString()} </a>
+                                                    $${plot.price} | <a href="#"><i class="fa fa-calendar"></i> ${new Date(plot.date_created).toLocaleDateString()} </a>
                                                 </div>
                                             </div>
                                         </div>
@@ -140,7 +167,6 @@
         }
     </script>
 </head>
-
 <body>
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PTNPV7L" height="0" width="0"
@@ -149,6 +175,9 @@
     <div class="page_loader"></div>
 
 
+    <div class="price" data-price="" style="display: none;"></div>
+    <div class="plot_property" data-plot_property="" style="display: none;"></div>
+    <div class="plot_property_id" data-plot_property_id="" style="display: none;"></div>
 
     <!-- Properties details page start -->
     <div class="properties-details-page content-area">
@@ -162,9 +191,9 @@
                                 <h1 class="heading-properties-3-h1">Plot A</h1>
                             </div>
                             <div class="pull-right">
-                                <h1><span class="price">$2825.00</span></h1>
+                                <h1><span class="pricee"></span></h1>
                             </div>
-                        </div>
+                        </div> 
                         <div class="clearfix">
                             <div class="pull-left">
                                 <p class="location"><i class="flaticon-pin"></i>123 Kathal St. Tampa City, </p>
@@ -210,63 +239,10 @@
                         </h3>
 
                         <div class="row">
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                <ul class="amenities">
-                                    <li>
-                                        <i class="fa fa-check"></i>Air conditioning
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-check"></i>Balcony
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-check"></i>Pool
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-check"></i>Room service
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-check"></i>Gym
-                                    </li>
-                                </ul>
+                            <div class="amenities col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                
                             </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                <ul class="amenities">
-                                    <li>
-                                        <i class="fa fa-check"></i>Wifi
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-check"></i>Parking
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-check"></i>Double Bed
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-check"></i>Home Theater
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-check"></i>Electric
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                                <ul class="amenities">
-                                    <li>
-                                        <i class="fa fa-check"></i>Telephone
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-check"></i>Jacuzzi
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-check"></i>Alarm
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-check"></i>Garage
-                                    </li>
-                                    <li>
-                                        <i class="fa fa-check"></i>Security
-                                    </li>
-                                </ul>
-                            </div>
+                            
                         </div>
                     </div>
 
@@ -411,7 +387,7 @@
                             <h3 class="sidebar-title">Properties</h3>
                             <div class="s-border"></div>
                             <div class="m-border"></div>
-                            <div class="d-flex recent-posts-box">
+                            <div c,plass="d-flex recent-posts-box">
                                 <a class="pr-3" href="properties-details.html">
                                     <img src="img/properties/small-properties-3.jpg" alt="small-properties"
                                         class="flex-shrink-0 me-3">
@@ -475,14 +451,18 @@
                                                 e.preventDefault();
                                                 
                                                 const formData = new FormData(e.target);
-                                                const data = {
+                                                const price = document.querySelector('.price').getAttribute('data-price');
+                                                const plot_property = document.querySelector('.plot_property').getAttribute('data-plot_property');
+                                                const plot_property_id = document.querySelector('.plot_property_id').getAttribute('data-plot_property_id');
+                                                const data = { 
                                                     fullname: formData.get('fullname'),
                                                     email: formData.get('email'),
                                                     phone: formData.get('phone'),
                                                     country_of_residence: formData.get('country_of_residence'),
-                                                    plot_property: "Property",
-                                                    plot_property_id: "123",
-                                                    type: "Residential"
+                                                    plot_property: plot_property,
+                                                    plot_property_id: plot_property_id,
+                                                    type: "Residential",
+                                                    price: price
                                                 };
 
                                                 try {

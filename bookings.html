@@ -328,6 +328,50 @@
     <script src="js/app.js"></script>
 
     <script>
+        // Function to handle approve booking
+        async function approveBooking(email) {
+            try {
+                const response = await fetch('http://localhost:3000/api/bookings/approve', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email })
+                });
+                if (response.ok) {
+                    alert('Booking approved successfully');
+                    location.reload(); // Refresh page to show updated status
+                } else {
+                    throw new Error('Failed to approve booking');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Failed to approve booking');
+            }
+        }
+
+        // Function to handle cancel booking
+        async function cancelBooking(email) {
+            try {
+                const response = await fetch('http://localhost:3000/api/bookings/cancel', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email })
+                });
+                if (response.ok) {
+                    alert('Booking cancelled successfully');
+                    location.reload(); // Refresh page to show updated status
+                } else {
+                    throw new Error('Failed to cancel booking');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Failed to cancel booking');
+            }
+        }
+
         // Fetch bookings when page loads
         fetch('http://localhost:3000/api/bookings')
             .then(response => response.json())
@@ -349,11 +393,15 @@
                                         <li>Mail : <span><a href="mailto:${booking.email}">${booking.email}</a></span></li>
                                         <li>Phone : <span><a href="tel:${booking.phone}">${booking.phone}</a></span></li>
                                         <li>Country : <span><a>${booking.country_of_residence}</a></span></li>
-                                        <li>Status : <span><a>user-approved</a></span></li>
+                                        <li>Status : <span><a>${booking.status}</a></span></li>
                                     </ul>
                                     <div class="buttons mb-20">
-                                        <a href="#" class="btn-1 btn-gray"><i class="fa fa-fw fa-check-circle-o"></i> Approve</a>
-                                        <a href="#" class="btn-1 btn-gray"><i class="fa fa-fw fa-times-circle-o"></i> Cancel</a>
+                                        <a href="#" class="btn-1 btn-gray" onclick="approveBooking('${booking.email}')">
+                                            <i class="fa fa-fw fa-check-circle-o"></i> Approve
+                                        </a>
+                                        <a href="#" class="btn-1 btn-gray" onclick="cancelBooking('${booking.email}')">
+                                            <i class="fa fa-fw fa-times-circle-o"></i> Cancel
+                                        </a>
                                     </div>
                                 </div>
                             </div>

@@ -359,10 +359,17 @@
                         <div class="col-lg-3 col-md-3 col-sm-6">
                             <div class="ui-item bg-dark">
                                 <div class="left">
-                                    <h4>42</h4>
-                                    <p>Bookmarked</p>
+                                    <h4 id="bookingCount">0</h4>
+                                    <p>Booked</p>
                                 </div>
-                                
+                                <script>
+                                    fetch('http://localhost:3000/api/bookings/counts')
+                                        .then(response => response.json())
+                                        .then(data => {
+                                            document.getElementById('bookingCount').textContent = data.count;
+                                        })
+                                        .catch(error => console.error('Error:', error));
+                                </script>
                             </div>
                         </div>
                     </div>
