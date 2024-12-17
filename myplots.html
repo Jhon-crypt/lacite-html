@@ -242,7 +242,7 @@
                             </tbody>
                         </table>
                         <script>
-                            fetch('http://localhost:3000/api/plots/all')
+                            fetch('https://f4525f0b-f097-4b46-9f0d-75f1e380b5e9.us-east-1.cloud.genez.io/api/plots/all')
                                 .then(response => response.json())
                                 .then(properties => {
                                     const tbody = document.getElementById('propertiesTableBody');
@@ -251,7 +251,7 @@
                                         tr.className = 'responsive-table';
                                         tr.innerHTML = `
                                             <td class="listing-photoo">
-                                                <img src="http://localhost:3000${property.path}" alt="listing-photo" class="img-fluid">
+                                                <img src="https://f4525f0b-f097-4b46-9f0d-75f1e380b5e9.us-east-1.cloud.genez.io${property.path}" alt="listing-photo" class="img-fluid">
                                             </td>
                                             <td class="title-container">
                                                 <h2><a href="#">${property.name}</a></h2>
