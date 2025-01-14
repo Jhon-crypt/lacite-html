@@ -387,7 +387,7 @@
                         <script>
                             fetch('https://f4525f0b-f097-4b46-9f0d-75f1e380b5e9.us-east-1.cloud.genez.io/api/properties/all/')
                                 .then(response => response.json())
-                                .then(properties => {
+                                .then(properties => { 
                                     const tbody = document.getElementById('propertiesTableBody');
                                     properties.forEach(property => {
                                         const tr = document.createElement('tr');
