@@ -5475,7 +5475,7 @@ mark {
 
 /** Service info 2 start **/
 .services-2 {
-    background: url(../img/nature2.jpg);
+    background: url(../img/plot1.png);
     z-index: 0;
     background-position: center center;
     background-repeat: no-repeat;
@@ -5496,7 +5496,7 @@ mark {
 }
 
 .services-2x {
-    background: url(../img/nature3.jpg);
+    background: url(../img/plot3.png);
     z-index: 0;
     background-position: center center;
     background-repeat: no-repeat;
